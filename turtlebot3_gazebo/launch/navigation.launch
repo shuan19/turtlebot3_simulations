@@ -1,0 +1,21 @@
+<launch>
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find turtlebot3_gazebo)/config/map.yaml" >
+    <param name="frame_id" value="map" />
+  </node>
+
+ <!-- Properties of each robot-->      
+
+  <include file="$(find turtlebot3_gazebo)/launch/amcl_robot.launch" />
+
+<!-- MOVE_BASE-->
+
+  <include file="$(find turtlebot3_navigation)/launch/move_base.launch" />
+
+<!-- Launching Rviz      -->
+
+  <node name="rviz" pkg="rviz" type="rviz" />
+ 
+</launch>
